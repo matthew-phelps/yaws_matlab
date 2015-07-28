@@ -68,12 +68,12 @@ step_epsilon = 0.25*epsilonvect(1);
 
 %% LIKELIHOOD FUNCTIONS
 
-LactivePrev_old = log(binopdf(round(1176*ActivePrevvec(1)),1176,0.047));
-LlatentPrev_old = log(betapdf((ActivePrevvec(1)/LatentPrevvec(1)),9.78,19.56)); 
-Ltot_old = LactivePrev_old + LlatentPrev_old;
-% the probability (P) comes from the data, the x comes from the model, N comes
+LactivePrev_old = log(binopdf(round(13490*ActivePrevvec(1)),13490,0.024));% the probability (P) comes from the data, the x comes from the model, N comes
 % from the study population from which P was estimated
 % N = 1176; P=.047
+LlatentPrev_old = log(betapdf((ActivePrevvec(1)/LatentPrevvec(1)),9.78,19.56)); % To restrain so that 95% of the time the ratio remains between 2 to 6
+Ltot_old = LactivePrev_old + LlatentPrev_old;
+
 
 %Take the x output from the model and use that as the new input
 %(round(1176*prev), 1776, 0.047)
