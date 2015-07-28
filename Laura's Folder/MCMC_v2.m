@@ -1,5 +1,5 @@
 format compact
-cbegin = fix(clock); %this gives you the time it started and time it ended
+tic
 
 global  rho ...
         betaONE ...
@@ -35,7 +35,7 @@ global  rho ...
         Rphi3b...
         Rphi4b...
         
-loops2 = 1000  ; %200150;
+loops2 = 200000  ; %200150;
 
 ActivePrevvec = zeros(loops2+1,1); %creating space to be populated with the prevalance values from the model. Loops is in reference to how many iterations we will be doing
 
@@ -250,6 +250,7 @@ ind = find(Ltot == max(Ltot));
 bestfitBetaONE = betaONEvect(ind);
 bestfitepsilon = epsilonvect(ind);
 
-2*mean(move_epsilon)
-2*mean(move_betaONE)   
-cend = fix(clock);
+2*mean(move_epsilon);
+2*mean(move_betaONE);
+save mcmc_results_v3.mat
+toc
