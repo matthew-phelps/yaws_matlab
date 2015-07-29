@@ -35,7 +35,7 @@ global  rho ...
         Rphi3b...
         Rphi4b...
         
-loops2 = 20  ; %200150;
+loops2 = 10000  ; %200150;
 
 ActivePrevvec = zeros(loops2+1,1); %creating space to be populated with the prevalance values from the model. Loops is in reference to how many iterations we will be doing
 
@@ -59,12 +59,12 @@ LatentPrevvec(1) = LatentPrev(end); % remove if we don't use ratio method
 betaONEvect = zeros(loops2+1,1);
 betaONEvect(1) = betaONE;      % 0.000001 - 0.00001
 move_betaONE = zeros(loops2,1);
-step_betaONE = 0.25*betaONEvect(1);
+step_betaONE = 0.3*betaONEvect(1);
 
 epsilonvect = zeros(loops2+1,1);
 epsilonvect(1) = epsilon;      % 0.000001 - 0.00001
 move_epsilon = zeros(loops2,1);
-step_epsilon = 0.25*epsilonvect(1);
+step_epsilon = 0.3*epsilonvect(1);
 
 %% LIKELIHOOD FUNCTIONS
 
@@ -181,7 +181,7 @@ for i = 1:loops2
             lambda =  9 * psi;         %1/20 - 1/2
             eta =  2.5 * (psi + lambda);
         
-            if epsilonvect(i+1) < 0 || (33 - (0.905/epsilonvect(i+1)))*35 <=0 || eta < 1/60; 
+            if epsilonvect(i+1) < 0 || (33 - (0.905/epsilonvect(i+1)))*35 <=0 || eta < 1/60 || epsilonvect(i+1)>20; 
             
             epsilonvect(i+1) = epsilonvect(i);
             move_epsilon(i) = 0;
@@ -250,7 +250,13 @@ ind = find(Ltot == max(Ltot));
 bestfitBetaONE = betaONEvect(ind);
 bestfitepsilon = epsilonvect(ind);
 
-2*mean(move_epsilon);
-2*mean(move_betaONE);
+%% plot parameters
+subplot(3,2,1),plot(betaONEvect),title('Beta')
+subplot(3,2,2),plot(epsilonvect),title('Epsilon')
+subplot(3,2,4),plot(ActivePrevvec),title('Active Prev')
+subplot(3,2,5),plot(LatentPrevvec),title('Latent Prev')
+subplot(3,2,6),plot(Ltot),title('Likelihood')
+mean(move_betaONE)*2
+mean(move_epsilon)*2
 %save mcmc_results_v3.mat
 toc

@@ -1,6 +1,6 @@
 ## Determine variance
-mean <- 85.5
-variance <- ((mean-78.2)*sqrt(250)/1.96)^2
+mean <- .855
+variance <- ((mean-.782)*sqrt(250)/1.96)^2
 
 estBetaParams <- function(mu, var) {
        alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
