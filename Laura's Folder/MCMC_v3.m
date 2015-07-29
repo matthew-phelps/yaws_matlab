@@ -68,7 +68,7 @@ step_epsilon = 0.25*epsilonvect(1);
 
 %% LIKELIHOOD FUNCTIONS
 
-LactivePrev_old = log(binopdf(round(1176*ActivePrevvec(1)),1176,0.047));% the probability (P) comes from the data, the x comes from the model, N comes
+LactivePrev_old = log(binopdf(round(13490*ActivePrevvec(1)),13490,0.024));% the probability (P) comes from the data, the x comes from the model, N comes
 % from the study population from which P was estimated
 % N = 1176; P=.047
 LlatentPrev_old = log(betapdf((ActivePrevvec(1)/LatentPrevvec(1)),9.78,19.56)); % To restrain so that 95% of the time the ratio remains between 2 to 6
@@ -131,8 +131,8 @@ for i = 1:loops2
                        
             % LIKELIHOOD FUNCTIONS
 
-            LactivePrev_old = log(binopdf(round(1176*ActivePrevvec(i)),1176,0.047));
-            LactivePrev_new = log(binopdf(round(1176*ActivePrevvec(i+1)),1176,0.047));
+            LactivePrev_old = log(binopdf(round(13490*ActivePrevvec(i)),13490,0.024));
+            LactivePrev_new = log(binopdf(round(13490*ActivePrevvec(i+1)),13490,0.024));
 
             LlatentPrev_old = log(betapdf((ActivePrevvec(i)/LatentPrevvec(i)),9.78,19.56));
             LlatentPrev_new = log(betapdf((ActivePrevvec(i+1)/LatentPrevvec(i+1)),9.78,19.56));
@@ -210,8 +210,8 @@ for i = 1:loops2
            
             % LIKELIHOOD FUNCTIONS
 
-            LactivePrev_old = log(binopdf(round(1176*ActivePrevvec(i)),1176,0.047));
-            LactivePrev_new = log(binopdf(round(1176*ActivePrevvec(i+1)),1176,0.047));
+            LactivePrev_old = log(binopdf(round(13490*ActivePrevvec(i)),13490,0.024));
+            LactivePrev_new = log(binopdf(round(13490*ActivePrevvec(i+1)),13490,0.024));
 
             LlatentPrev_old = log(betapdf((ActivePrevvec(i)/LatentPrevvec(i)),9.78,19.56));
             LlatentPrev_new = log(betapdf((ActivePrevvec(i+1)/LatentPrevvec(i+1)),9.78,19.56));
@@ -252,5 +252,5 @@ bestfitepsilon = epsilonvect(ind);
 
 2*mean(move_epsilon);
 2*mean(move_betaONE);
-save mcmc_results_v2.mat
+save mcmc_results_v3.mat
 toc
