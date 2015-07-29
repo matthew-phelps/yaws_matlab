@@ -35,7 +35,7 @@ global  rho ...
         Rphi3b...
         Rphi4b...
         
-loops2 = 200000  ; %200150;
+loops2 = 20  ; %200150;
 
 ActivePrevvec = zeros(loops2+1,1); %creating space to be populated with the prevalance values from the model. Loops is in reference to how many iterations we will be doing
 
@@ -252,5 +252,5 @@ bestfitepsilon = epsilonvect(ind);
 
 2*mean(move_epsilon);
 2*mean(move_betaONE);
-save mcmc_results_v3.mat
+%save mcmc_results_v3.mat
 toc
