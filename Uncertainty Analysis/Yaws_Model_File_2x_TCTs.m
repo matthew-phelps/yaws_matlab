@@ -65,7 +65,7 @@ epsilonvect_500 = epsilonvect(900:end);
 % epsilon & Beta found using LaplacesDemon package in R - p.interval(beta_500, HPD=F, MM=F, plot=T)
 betaONEsample = datasample(betaONEvect_500, loops); % lower and upper bounds found using LaplacesDemon in R
 epsilonSample = datasample(epsilonvect_500, loops); %epsilon cannot be below .0274 or you get spurious results
-EfVect = betarnd( -0.5493484,-0.09316435);
+EfVect = betarnd( -0.5493484,-0.09316435); % change this to the CSV with the beta values output
 mean(EfVect);
 
 coverage = [0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.975, 0.99];
