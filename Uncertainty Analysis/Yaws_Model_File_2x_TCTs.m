@@ -1,5 +1,5 @@
 %% FILES NOTES
-% UNCERTAINTY analysis - looping model 10k and sampling from posterior
+% UNCERTAINTY analysis - looping model 100k and sampling from posterior
 % distribution of betaONE and Epsilon vect files
 % 1 treatment at all coverage levels and 744 months total time
 % with "new" cure rate of 0.855
@@ -43,16 +43,17 @@ global  rho ...
     
 
 YawsParameterFile_TreatV2
-load('betaONEvect.mat')
-load('epsilonVect.mat')
+load('betaONEvect.mat'); % MCMC output
+load('epsilonVect.mat');
+load('EffVect.mat');
 
 
-loops = 12;
-%%
-% create vector of beta and epsilon values randomly drawn from MCMC vector
-% output. We do this because we want the beta and epsilon to vary
+loops = 8000;
+%% create vector of beta and epsilon values randomly drawn from MCMC vector
+% We do this because we want the beta and epsilon to vary
 % independtly during each run - so we can't use the original MCMC output, but we don't want
 % to draw a random sample in each for-loop
+
 
 % remove the burn-in period
 betaONEvect_500 = betaONEvect(900:end);
@@ -60,13 +61,11 @@ epsilonvect_500 = epsilonvect(900:end);
 
 
 
-
 %% generate vector of  of samples from parameters' FULL distributions
 % epsilon & Beta found using LaplacesDemon package in R - p.interval(beta_500, HPD=F, MM=F, plot=T)
 betaONEsample = datasample(betaONEvect_500, loops); % lower and upper bounds found using LaplacesDemon in R
 epsilonSample = datasample(epsilonvect_500, loops); %epsilon cannot be below .0274 or you get spurious results
-EfVect = betarnd( -0.5493484,-0.09316435); % change this to the CSV with the beta values output
-mean(EfVect);
+EfVect = datasample(EffVect, loops);
 
 coverage = [0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.975, 0.99];
 time = [1, 3, 6, 9, 12];

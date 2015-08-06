@@ -43,11 +43,12 @@ global  rho ...
     
 
 YawsParameterFile_TreatV2
-load('betaONEvect.mat') % MCMC output
-load('epsilonVect.mat')
+load('betaONEvect.mat'); % MCMC output
+load('epsilonVect.mat');
+load('EffVect.mat');
 
 
-loops = 20000;
+loops = 8000;
 %% create vector of beta and epsilon values randomly drawn from MCMC vector
 % We do this because we want the beta and epsilon to vary
 % independtly during each run - so we can't use the original MCMC output, but we don't want
@@ -64,8 +65,8 @@ epsilonvect_500 = epsilonvect(900:end);
 % epsilon & Beta found using LaplacesDemon package in R - p.interval(beta_500, HPD=F, MM=F, plot=T)
 betaONEsample = datasample(betaONEvect_500, loops); % lower and upper bounds found using LaplacesDemon in R
 epsilonSample = datasample(epsilonvect_500, loops); %epsilon cannot be below .0274 or you get spurious results
-EfVect = binornd(250, 0.855, [loops,1])/250;
-mean(EfVect);
+EfVect = datasample(EffVect, loops);
+
 
 coverage = [0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.975, 0.99];
 time = [1, 3, 6, 9, 12];
