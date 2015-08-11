@@ -6,7 +6,7 @@
 
 clear
 tic
-cbegin = fix(clock);
+
 global  rho ...
     betaONE ...
     betaTWO ...
@@ -45,9 +45,9 @@ global  rho ...
 YawsParameterFile_TreatV2
 load('MCMC_v3_BetaONEvect.mat')
 load('MCMC_v3_EpsilonVect.mat')
+load('EffVect.mat')
 
-
-loops = 1200;
+loops = 500;
 %%
 % create vector of beta and epsilon values randomly drawn from MCMC vector
 % output. We do this because we want the beta and epsilon to vary
@@ -65,12 +65,10 @@ epsilonvect_500 = epsilonvect(900:end);
 % epsilon & Beta found using LaplacesDemon package in R - p.interval(beta_500, HPD=F, MM=F, plot=T)
 betaONEsample = datasample(betaONEvect_500, loops); % lower and upper bounds found using LaplacesDemon in R
 epsilonSample = datasample(epsilonvect_500, loops); %epsilon cannot be below .0274 or you get spurious results
-EfVect = binornd(250, 0.855, [loops,1])/250;
-mean(EfVect);
+EfVect = datasample(EffVect, loops);
 
 
 coverage = [0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.975, 0.99];
-coverage_names = {'Infect1x50', 'Infect1x55', 'Infect1x60', 'Infect1x65', 'Infect1x70','Infect1x75','Infect1x80','Infect1x85','Infect1x90','Infect1x95'};
 results = zeros(loops, length(coverage));
 people_infect = zeros(loops, length(coverage));
 percent_infect_pre = zeros(loops, length(coverage));
@@ -319,6 +317,8 @@ for j = 1:length(coverage) % iterate over the different coverage levels defined 
     
 end;
 
+clear cov1 cov2 cov3 cov4 cov5 cov6 cov7 cov8 cov9 ActivePrev alpha1 alpha2 E_0 IP1_0 IP2_0 epsilon eta gamma1 gamma2 betaONE betaTWO chi1 chi2;
+clear phi1a phi1b phi2a phi2b phi3a phi3b phi4a phi4b psi rho Rphi1a Rphi1b Rphi2a Rphi2b Rphi3a Rphi3b Rphi4a Rphi4b R_0 S_0 IT_0 theta Ef IS_0 j k I L1_0 L2_0 loops mu 
 
 %% Prevalence reduction
 
