@@ -1,8 +1,6 @@
 %% FILES NOTES
-% UNCERTAINTY analysis - looping model 10k and sampling from posterior
-% distribution of betaONE and Epsilon vect files
-% 1 treatment at all coverage levels and 744 months total time
-% with "new" cure rate of 0.855
+% PARAMETERIZED for the PNG field study. USED to compare prevalence
+% pre-post
 
 clear
 tic
@@ -72,7 +70,7 @@ coverage = [0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.975, 0.99];
 results = zeros(loops, length(coverage));
 people_infect = zeros(loops, length(coverage));
 percent_infect_pre = zeros(loops, length(coverage));
-time = [1, 3, 6, 9, 12];
+time = [1, 3, 6];
 
 
 
@@ -317,9 +315,6 @@ for j = 1:length(coverage) % iterate over the different coverage levels defined 
     
 end;
 
-clear cov1 cov2 cov3 cov4 cov5 cov6 cov7 cov8 cov9 ActivePrev alpha1 alpha2 E_0 IP1_0 IP2_0 epsilon eta gamma1 gamma2 betaONE betaTWO chi1 chi2;
-clear phi1a phi1b phi2a phi2b phi3a phi3b phi4a phi4b psi rho Rphi1a Rphi1b Rphi2a Rphi2b Rphi3a Rphi3b Rphi4a Rphi4b R_0 S_0 IT_0 theta Ef IS_0 j k I L1_0 L2_0 loops mu 
-
 %% Prevalence reduction
 
 prev_post_mean = zeros(length(time),length(coverage));
@@ -401,5 +396,9 @@ for j = 1:length(coverage);
         prob_success(l,j) = sum(success(:,j,l)) / loops;
     end;
 end;
+
+clear cov1 cov2 cov3 cov4 cov5 cov6 cov7 cov8 cov9 ActivePrev alpha1 alpha2 E_0 IP1_0 IP2_0 epsilon eta gamma1 gamma2 betaONE betaTWO chi1 chi2;
+clear phi1a phi1b phi2a phi2b phi3a phi3b phi4a phi4b psi rho Rphi1a Rphi1b Rphi2a Rphi2b Rphi3a Rphi3b Rphi4a Rphi4b R_0 S_0 IT_0 theta Ef IS_0 j k I L1_0 L2_0 loops mu 
+
 save PNG_results2x_TTT_empirical_compare.mat
 toc

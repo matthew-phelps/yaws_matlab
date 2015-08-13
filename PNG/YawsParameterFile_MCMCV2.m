@@ -34,29 +34,20 @@ global  rho ...
         Rphi2b...
         Rphi3b...
         Rphi4b...
-        cov1...
-        cov2...
-        cov3...
-        cov4...
-        cov5...
-        cov6...
-        cov7...
-        cov8...
-        cov9...
         
         
        
 
 rho = 0.043; %/12;
-betaONE = 0.177024940571749;
+betaONE = .15;
 betaTWO = betaONE;
-mu = 0.043;%;.016 remember to re-visit demographic params
+mu = 0.0429;%;.016 remember to re-visit demographic params
 alpha1 = .1295455;% see calculations in notebook pg1;
 alpha2 = 1.234091;% see calculatins in notebook pg1;
 gamma1 = 1/2.75;%see notebook   pg1         %1/9 - 1/2  % 3-6 weeks or more;
 gamma2 = 1/6; % see notebook pg1
 proportion = .095;
-epsilon = 0.0416868914648709;   %0.03617309
+epsilon = 1.06510309;   %0.03617309
 theta = 0.37598;  % see notebook pg2;           %1/6 - 1/0.5
 psi =  (3.5/((33 - (0.905/epsilon))*35));
 lambda =  9 * psi;         %1/20 - 1/2
@@ -85,16 +76,6 @@ phi3b = 1-phi3a;
 phi4b = 1-phi4a;
 
 
-% Non-homogenous treatment application
-cov1 = 0;
-cov2 = 0;
-cov3 = 0;
-cov4 = 0;
-cov5 = 0;
-cov6 = 0;
-cov7 = 0;
-cov8 = 0;
-cov9 = 0;
 
 
 

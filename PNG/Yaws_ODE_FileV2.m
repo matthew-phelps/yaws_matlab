@@ -86,6 +86,6 @@ Xdot(7) = theta*IS - lambda*L2 - eta*L2 - psi*L2- (Ef*Rphi3a*chi2*L2) - (Ef*(Rph
 Xdot(8) = lambda*L2 - (Ef*Rphi4a*chi2*IT) - (Ef*(Rphi4b)*chi2*IT) - mu*IT;
 
 %dR/dt
-Xdot(9) = psi*L2 + (Ef*(Rphi4b)*chi2*IT) + (Ef*(Rphi3b)*chi2*L2) + (Ef*(Rphi3b)*chi1*IS) + (Ef*(Rphi2b)*chi2*L1) + (Ef*(Rphi2b)*chi1*IP1) + (Ef*(Rphi2b)*chi1*IP2) - (mu*R);
+Xdot(9) = psi*L2 + (Ef*(Rphi4b)*chi2*IT) + (Ef*(Rphi3b)*chi2*L2) + (Ef*(Rphi3b)*chi1*IS) + (Ef*(Rphi2b)*chi2*L1) + (Ef*(Rphi2b)*chi1*IP1) + (Ef*(Rphi2b)*chi1*IP1) - (mu*R);
  
 end
